@@ -12,17 +12,20 @@ extra_payment_end_month = int(input('when we end extra payment: '))
 extra_payment = int(input('how much extra payment is: '))
 
 while principal > 0:
-    if extra_payment_start_month <= month < extra_payment_end_month:
+    month += 1
+
+    if extra_payment_start_month <= month <= extra_payment_end_month:
         principal = principal * (1+rate/12) - (payment+extra_payment)
         total_paid += payment+extra_payment
     else:
         principal = principal * (1 + rate / 12) - payment
         total_paid += payment
-    month += 1
+
     if principal < 0:
         overpay = abs(principal)
         total_paid -= overpay
         principal += overpay
+
     print(month, total_paid, principal)
 
-# print('Total paid', total_paid)
+print('Total paid', total_paid)
